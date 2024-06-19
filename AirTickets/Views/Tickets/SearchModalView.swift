@@ -14,56 +14,135 @@ struct SearchModalView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-            VStack {
-                Capsule()
-                    .fill(Color.gray.opacity(0.5))
-                    .frame(width: 40, height: 5)
-                    .padding(.top, 8)
-                
-                VStack(spacing: 16) {
-                    TextField("Откуда - Минск", text: $departure)
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(8)
-                        .foregroundColor(.white)
-                        .disabled(true)
-                    
-                    TextField("Куда - Турция", text: $destination)
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(8)
-                        .foregroundColor(.white)
-                        .keyboardType(.default)
-                        .disableAutocorrection(true)
-                        .overlay(
-                            Button(action: {
-                                destination = ""
-                            }) {
-                                Image(systemName: "xmark.circle.fill")
-                                    .foregroundColor(.gray)
-                            }
-                            .padding(.trailing, 8),
-                            alignment: .trailing
-                        )
-                }
-                .padding(.horizontal, 24)
+        VStack(alignment: .center, spacing: 26) {
+            Capsule()
+                .fill(Color.gray5)
+                .frame(width: 40, height: 5)
                 .padding(.top, 16)
-                
-                HStack {
-//                    OptionButton(icon: "command", title: "Сложный\nмаршрут")
-//                    OptionButton(icon: "globe", title: "Куда\nугодно")
-//                    OptionButton(icon: "calendar", title: "Выходные")
-//                    OptionButton(icon: "flame", title: "Горячие\nбилеты")
+
+            VStack {
+                VStack {
+                    HStack {
+                        Image(.airplane2)
+                        TextField("Откуда - Минск", text: $departure)
+                            .foregroundColor(.white)
+                            .frame(height: 21)
+                    }
+                    
+                    Divider()
+                    
+                    HStack {
+                        Image(.search)
+                        TextField("Куда - Турция", text: $destination)
+                            .foregroundColor(.white)
+                            .frame(height: 21)
+                        Button(action: {
+                            if !destination.isEmpty {
+                                destination = ""
+                            }
+                        }) {
+                            Image(.close)
+                        }
+                    }
                 }
-                .padding(.top, 24)
-                
-                List {
-//                    DestinationRow(imageName: "istanbul", title: "Стамбул", subtitle: "Популярное направление")
-//                    DestinationRow(imageName: "sochi", title: "Сочи", subtitle: "Популярное направление")
-//                    DestinationRow(imageName: "phuket", title: "Пхукет", subtitle: "Популярное направление")
-                }
-                .listStyle(PlainListStyle())
+                .padding(16)
             }
-            .background(.grаy1)
+            .background(Color.gray1)
+            .cornerRadius(16)
+            .padding(.horizontal, 16)
+            .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
+
+            HStack(alignment: .top, spacing: 16) {
+                Tip(image: .command, bgColor: Color.green1, cardText: "Сложный\nмаршрут", action: { presentationMode.wrappedValue.dismiss() })
+                Tip(image: .planet, bgColor: Color.blue1, cardText: "Куда угодно", action: {
+                    destination = "Куда угодно"
+                })
+                Tip(image: .calendar, bgColor: Color.blue2, cardText: "Выходные", action: {
+                    presentationMode.wrappedValue.dismiss()
+                })
+                Tip(image: .fire, bgColor: .red1, cardText: "Горячие\nбилеты", action: {
+                    presentationMode.wrappedValue.dismiss()
+                })
+            }
+
+            VStack {
+                CityTip(image: .istanbul, cityName: "Стамбул", action: { destination = "Стамбул" })
+                CityTip(image: .sochi, cityName: "Сочи", action: { destination = "Сочи" })
+                CityTip(image: .phuket, cityName: "Пхукет", action: { destination = "Пхукет" })
+            }
+            .background(Color.gray1)
+            .cornerRadius(16)
+            .padding(16)
+
+            Spacer()
+        }
+        .background(Color.gray0)
+    }
+}
+
+
+struct Tip: View {
+    let image: UIImage
+    let bgColor: Color
+    let cardText: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(bgColor)
+                    .frame(width: 48, height: 48)
+                    .overlay(
+                        Image(uiImage: image)
+                            .foregroundColor(.white)
+                    )
+                    .padding(.bottom, 8)
+                
+                Text(cardText)
+                    .font(.caption)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(width: 80)
+            }
+        }
+    }
+}
+
+struct CityTip: View {
+    let image: UIImage
+    let cityName: String
+    let action: () -> Void
+    
+    var body: some View {
+            Button(action: action) {
+                VStack {
+                    HStack {
+                        Image(uiImage: image)
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .cornerRadius(8)
+                        VStack(alignment: .leading) {
+                            Text(cityName)
+                                .font(.headline)
+                                .foregroundStyle(.white)
+                                .padding(.bottom, 4)
+                            Text("Популярное направление")
+                                .font(.subheadline)
+                                .foregroundColor(Color.gray5)
+                        }
+                        Spacer()
+                    }
+                    .padding(.top, 24)
+                    .padding(.bottom, 16)
+                    .padding(.horizontal, 16)
+                    .background(Color.gray1)
+                    .cornerRadius(8)
+                    
+                    Divider()
+                }
+    
+            }
         }
 }

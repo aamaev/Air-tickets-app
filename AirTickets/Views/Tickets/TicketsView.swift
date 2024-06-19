@@ -25,7 +25,7 @@ struct TicketsView: View {
 
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(.grаy1)
+                    .fill(Color.gray1)
                     .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
                     .frame(height: 122)
 
@@ -53,7 +53,7 @@ struct TicketsView: View {
                     }
                     .padding(.vertical, 16)
                 }
-                .background(.grаy4)
+                .background(Color.gray4)
                 .cornerRadius(16)
                 .frame(height: 90)
                 .padding(16)
