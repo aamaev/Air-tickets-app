@@ -11,7 +11,7 @@ import SwiftUI
 struct AirTicketsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainCoordinator().start()
         }
     }
 }
