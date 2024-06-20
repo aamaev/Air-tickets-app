@@ -18,7 +18,7 @@ class TicketsViewModel: ObservableObject {
     }
 
     func loadOffers() {
-        guard let url = URL(string: "https://run.mocky.io/v3/b2a49dcf-1d65-45d6-a26a-3027b98d328e") else {
+        guard let url = URL(string: "https://run.mocky.io/v3/ad9a46ba-276c-4a81-88a6-c068e51cce3a") else {
             return
         }
 
@@ -40,7 +40,7 @@ class TicketsViewModel: ObservableObject {
     }
 
     func loadTicketsOffers() {
-        guard let url = URL(string: "https://run.mocky.io/v3/5b565a4c-8be7-4ef3-9661-7e7d9dc10a7f") else {
+        guard let url = URL(string: "https://run.mocky.io/v3/38b5205d-1a3d-4c2f-9d77-2f9d1ef01a4a") else {
             return
         }
 

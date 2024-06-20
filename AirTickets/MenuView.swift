@@ -7,48 +7,48 @@
 
 import SwiftUI
 
-struct MainView: View {
-    @ObservedObject var viewModel: MainViewModel
+struct MenuView: View {
+    @ObservedObject var viewModel: MenuViewModel
 
     var body: some View {
         TabView(selection: $viewModel.selectedMenuItem) {
-            TicketsView()
+            viewModel.coordinator.showSearchFlights()
                 .tabItem {
                     Image(.airplane).renderingMode(.template)
                     Text("Авиабилеты")
-                        .font(.system(size: 10))
+                        .font(.custom("SFProDisplay-Regular", size: 10))
                 }
                 .tag(MenuItem.tickets)
             
-            HotelsView()
+            viewModel.coordinator.showHotels()
                 .tabItem {
                     Image(.hotels).renderingMode(.template)
                     Text("Отели")
-                        .font(.system(size: 10))
+                        .font(.custom("SFProDisplay-Regular", size: 10))
                 }
                 .tag(MenuItem.hotels)
             
-            ShortcutsView()
+            viewModel.coordinator.showShortcuts()
                 .tabItem {
                     Image(.geoPoint).renderingMode(.template)
                     Text("Короче")
-                        .font(.system(size: 10))
+                        .font(.custom("SFProDisplay-Regular", size: 10))
                 }
                 .tag(MenuItem.shortcuts)
             
-            SubscriptionsView()
+            viewModel.coordinator.showSubscriptions()
                 .tabItem {
                     Image(.notifications).renderingMode(.template)
                     Text("Подписки")
-                        .font(.system(size: 10))
+                        .font(.custom("SFProDisplay-Regular", size: 10))
                 }
                 .tag(MenuItem.subscriptions)
             
-            ProfileView()
+            viewModel.coordinator.showProfile()
                 .tabItem {
                     Image(.person).renderingMode(.template)
                     Text("Профиль")
-                        .font(.system(size: 10))
+                        .font(.custom("SFProDisplay-Regular", size: 10))
                 }
                 .tag(MenuItem.profile)
         }

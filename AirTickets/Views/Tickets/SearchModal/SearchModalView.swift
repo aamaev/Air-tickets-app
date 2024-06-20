@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SearchModalView: View {
     @Binding var departure: String
-    @Binding var destination: String
+    @Binding var arrival: String
     @Environment(\.presentationMode) var presentationMode
     
     @StateObject private var keyboardResponder = KeyboardResponder()
@@ -28,6 +28,7 @@ struct SearchModalView: View {
                         HStack {
                             Image(.airplane2)
                             TextField("Откуда - Минск", text: $departure)
+                                .font(.custom("SFProDisplay-Semibold", size: 16))
                                 .onChange(of: departure) { oldValue, newValue in
                                     UserDefaults.standard.set(newValue, forKey: "departure")
                                 }
@@ -39,20 +40,21 @@ struct SearchModalView: View {
                         
                         HStack {
                             Image(.search)
-                            TextField("Куда - Турция", text: $destination, onCommit: {
-                                if !destination.isEmpty {
+                            TextField("Куда - Турция", text: $arrival, onCommit: {
+                                if !arrival.isEmpty {
                                     presentationMode.wrappedValue.dismiss()
                                 }
                             })
-                            .onChange(of: destination) { oldValue, newValue in
-                                UserDefaults.standard.set(newValue, forKey: "destination")
+                            .font(.custom("SFProDisplay-Semibold", size: 16))
+                            .onChange(of: arrival) { oldValue, newValue in
+                                UserDefaults.standard.set(newValue, forKey: "arrival")
                             }
                             .foregroundColor(.white)
                             .frame(height: 21)
                             Button(action: {
-                                if !destination.isEmpty {
-                                    destination = ""
-                                    UserDefaults.standard.set(destination, forKey: "destination")
+                                if !arrival.isEmpty {
+                                    arrival = ""
+                                    UserDefaults.standard.set(arrival, forKey: "arrival")
                                 }
                             }) {
                                 Image(.close)
@@ -69,7 +71,7 @@ struct SearchModalView: View {
                 HStack(alignment: .top, spacing: 16) {
                     Tip(image: .command, bgColor: Color.green1, cardText: "Сложный\nмаршрут", action: { presentationMode.wrappedValue.dismiss() })
                     Tip(image: .planet, bgColor: Color.blue1, cardText: "Куда угодно", action: {
-                        destination = "Куда угодно"
+                        arrival = "Куда угодно"
                     })
                     Tip(image: .calendar, bgColor: Color.blue2, cardText: "Выходные", action: {
                         presentationMode.wrappedValue.dismiss()
@@ -80,13 +82,14 @@ struct SearchModalView: View {
                 }
 
                 VStack {
-                    CityTip(image: .istanbul, cityName: "Стамбул", action: { destination = "Стамбул" })
-                    CityTip(image: .sochi, cityName: "Сочи", action: { destination = "Сочи" })
-                    CityTip(image: .phuket, cityName: "Пхукет", action: { destination = "Пхукет" })
+                    CityTip(image: .istanbul, cityName: "Стамбул", action: { arrival = "Стамбул" })
+                    CityTip(image: .sochi, cityName: "Сочи", action: { arrival = "Сочи" })
+                    CityTip(image: .phuket, cityName: "Пхукет", action: { arrival = "Пхукет" })
                 }
                 .background(Color.gray1)
                 .cornerRadius(16)
-                .padding(16)
+                .padding(.top, 8)
+                .padding(.horizontal, 16)
 
                 Spacer()
             }
@@ -98,67 +101,3 @@ struct SearchModalView: View {
     }
 }
 
-struct Tip: View {
-    let image: UIImage
-    let bgColor: Color
-    let cardText: String
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            VStack {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(bgColor)
-                    .frame(width: 48, height: 48)
-                    .overlay(
-                        Image(uiImage: image)
-                            .foregroundColor(.white)
-                    )
-                    .padding(.bottom, 8)
-                
-                Text(cardText)
-                    .font(.caption)
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(width: 80)
-            }
-        }
-    }
-}
-
-struct CityTip: View {
-    let image: UIImage
-    let cityName: String
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            VStack {
-                HStack {
-                    Image(uiImage: image)
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .cornerRadius(8)
-                    VStack(alignment: .leading) {
-                        Text(cityName)
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding(.bottom, 4)
-                        Text("Популярное направление")
-                            .font(.subheadline)
-                            .foregroundColor(Color.gray5)
-                    }
-                    Spacer()
-                }
-                .padding(.top, 24)
-                .padding(.bottom, 16)
-                .padding(.horizontal, 16)
-                .background(Color.gray1)
-                .cornerRadius(8)
-                
-                Divider()
-            }
-        }
-    }
-}

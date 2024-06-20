@@ -13,14 +13,15 @@ struct TicketOffer: Codable, Identifiable {
     let timeRange: [String]
     let price: Price
     
+    struct Price: Codable {
+        let value: Int
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id, title, timeRange = "time_range", price
     }
 }
 
-struct Price: Codable {
-    let value: Int
-}
 
 struct TicketOffersResponse: Codable {
     let ticketsOffers: [TicketOffer]

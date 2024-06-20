@@ -23,7 +23,7 @@ struct OfferView: View {
                 .padding(.bottom, 8)
             
             Text(title)
-                .font(.custom("SFProDisplay-Bold", size: 16))
+                .font(.custom("SFProDisplay-Semibold", size: 16))
                 .foregroundColor(.white)
                 .padding(.bottom, 8)
             
@@ -34,10 +34,10 @@ struct OfferView: View {
             
             HStack {
                 Image(.airplane)
-                    .foregroundColor(.white)
+                    .foregroundColor(.gray6)
                 Text(price)
                     .font(.custom("SFProDisplay-Regular", size: 14))
-                    .foregroundColor(.gray)
+                    .foregroundColor(.white)
             }
         }
         .frame(width: 150)

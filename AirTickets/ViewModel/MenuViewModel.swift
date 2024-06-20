@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-class MainViewModel: ObservableObject {
+class MenuViewModel: ObservableObject {
     @Published var selectedMenuItem: MenuItem = .tickets
+    let coordinator: Coordinator
     
-    func selectMenuItem(_ item: MenuItem) {
-        selectedMenuItem = item
+    init(coordinator: Coordinator) {
+        self.coordinator = coordinator
     }
 }
 
