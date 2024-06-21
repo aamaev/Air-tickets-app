@@ -39,7 +39,14 @@ struct SearchModalView: View {
                         Divider()
                         
                         HStack {
-                            Image(.search)
+                            Button {
+                                if !arrival.isEmpty {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            } label: {
+                                Image(.search)
+                            }
+
                             TextField("Куда - Турция", text: $arrival, onCommit: {
                                 if !arrival.isEmpty {
                                     presentationMode.wrappedValue.dismiss()

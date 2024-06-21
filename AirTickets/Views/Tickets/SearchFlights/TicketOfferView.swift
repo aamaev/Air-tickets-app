@@ -35,7 +35,7 @@ struct TicketOfferView: View {
                         .foregroundColor(.white)
                         .lineLimit(1)
                         .truncationMode(.tail)
-                        .padding(.top, 4)
+                        .padding(.top, 2)
                 }
             }
             

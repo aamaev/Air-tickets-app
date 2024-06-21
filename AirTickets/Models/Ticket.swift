@@ -33,12 +33,12 @@ struct Ticket: Identifiable, Codable {
     }
     
     struct Luggage: Codable {
-        let hasLuggage: Bool
+        let hasLuggage: Bool?
         let price: Price?
     }
     
     struct HandLuggage: Codable {
-        let hasHandLuggage: Bool
+        let hasHandLuggage: Bool?
         let size: String?
     }
     
@@ -57,4 +57,8 @@ struct Ticket: Identifiable, Codable {
         case isReturnable = "is_returnable"
         case isExchangable = "is_exchangable"
     }
+}
+
+struct TicketsResponse: Decodable {
+    let tickets: [Ticket]
 }

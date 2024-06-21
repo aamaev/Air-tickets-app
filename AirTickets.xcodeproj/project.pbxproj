@@ -36,6 +36,8 @@
 		09466D2F2C248CFC0093723E /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 09466D1D2C248CFC0093723E /* SF-Pro-Display-Semibold.otf */; };
 		09466D302C248CFC0093723E /* SF-Pro-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 09466D1E2C248CFC0093723E /* SF-Pro-Display-Heavy.otf */; };
 		09466D312C248CFC0093723E /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 09466D1F2C248CFC0093723E /* SF-Pro-Display-Medium.otf */; };
+		09466D342C249EAA0093723E /* FlightListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09466D332C249EAA0093723E /* FlightListViewModel.swift */; };
+		09466D372C24BB7A0093723E /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09466D362C24BB7A0093723E /* TicketView.swift */; };
 		09BE34A62C2174C60049D991 /* AirTicketsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BE34A52C2174C60049D991 /* AirTicketsApp.swift */; };
 		09BE34A82C2174C60049D991 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BE34A72C2174C60049D991 /* MenuView.swift */; };
 		09BE34AA2C2174C70049D991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09BE34A92C2174C70049D991 /* Assets.xcassets */; };
@@ -84,6 +86,8 @@
 		09466D1E2C248CFC0093723E /* SF-Pro-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Heavy.otf"; sourceTree = "<group>"; };
 		09466D1F2C248CFC0093723E /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
 		09466D322C248DAA0093723E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		09466D332C249EAA0093723E /* FlightListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightListViewModel.swift; sourceTree = "<group>"; };
+		09466D362C24BB7A0093723E /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		09BE34A22C2174C60049D991 /* AirTickets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirTickets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09BE34A52C2174C60049D991 /* AirTicketsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirTicketsApp.swift; sourceTree = "<group>"; };
 		09BE34A72C2174C60049D991 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuView.swift; path = ../MenuView.swift; sourceTree = "<group>"; };
@@ -208,6 +212,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		09466D352C24BB660093723E /* FlightList */ = {
+			isa = PBXGroup;
+			children = (
+				09466CF42C2448150093723E /* FlightListView.swift */,
+				09466D362C24BB7A0093723E /* TicketView.swift */,
+			);
+			path = FlightList;
+			sourceTree = "<group>";
+		};
 		09BE34992C2174C60049D991 = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +280,7 @@
 			children = (
 				09BE34C62C217D840049D991 /* MenuViewModel.swift */,
 				09BE34CD2C21ADFF0049D991 /* TicketsViewModel.swift */,
+				09466D332C249EAA0093723E /* FlightListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -296,7 +310,7 @@
 			children = (
 				09466D072C2484590093723E /* SearchFlights */,
 				09466D062C2484160093723E /* SearchModal */,
-				09466CF42C2448150093723E /* FlightListView.swift */,
+				09466D352C24BB660093723E /* FlightList */,
 			);
 			path = Tickets;
 			sourceTree = "<group>";
@@ -400,8 +414,10 @@
 				09466CFF2C2483670093723E /* FlightInfo.swift in Sources */,
 				09466D0C2C24850D0093723E /* Tip.swift in Sources */,
 				09BE34CC2C21ADCE0049D991 /* Offer.swift in Sources */,
+				09466D342C249EAA0093723E /* FlightListViewModel.swift in Sources */,
 				09BE34C72C217D840049D991 /* MenuViewModel.swift in Sources */,
 				09466CFB2C2482C10093723E /* FilterView.swift in Sources */,
+				09466D372C24BB7A0093723E /* TicketView.swift in Sources */,
 				09BE34D32C21D7EE0049D991 /* OfferView.swift in Sources */,
 				09BE34D12C21D7AA0049D991 /* SearchModalView.swift in Sources */,
 				09466CF52C2448150093723E /* FlightListView.swift in Sources */,

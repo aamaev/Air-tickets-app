@@ -15,6 +15,7 @@ class TicketsViewModel: ObservableObject {
 
     init() {
         loadOffers()
+        loadTicketsOffers()
     }
 
     func loadOffers() {

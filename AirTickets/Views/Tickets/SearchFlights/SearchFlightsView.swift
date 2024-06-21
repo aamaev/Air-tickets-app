@@ -144,8 +144,10 @@ struct SearchFlightsView: View {
                             .frame(height: 21)
                         Button(action: {
                             if !arrival.isEmpty {
-                                arrival = ""
-                                UserDefaults.standard.set(arrival, forKey: "arrival")
+                                withAnimation {
+                                    arrival = ""
+                                    UserDefaults.standard.set(arrival, forKey: "arrival")
+                                }
                             }
                         }) {
                             Image(.close)
@@ -168,7 +170,7 @@ struct SearchFlightsView: View {
                                                                               departureDate: departureDate,
                                                                               arrivalDate: arrivalDate))) {
                Text("Посмотреть все билеты")
-                   .font(.system(size: 16, weight: .regular))
+                    .font(.custom("SFProDisplay-MediumItalic", size: 20))
                    .foregroundColor(.white)
                    .padding()
                    .frame(maxWidth: .infinity)
@@ -178,11 +180,6 @@ struct SearchFlightsView: View {
             }
                  
             Spacer()
-        }
-        .onAppear {
-            if !departure.isEmpty && !arrival.isEmpty {
-                viewModel.loadTicketsOffers()
-            }
         }
     }
     
