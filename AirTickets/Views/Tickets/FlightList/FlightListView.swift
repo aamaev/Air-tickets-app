@@ -17,15 +17,19 @@ struct FlightListView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                
                 ScrollView {
                     ForEach(viewModel.ticketsList) { ticket in
                         TicketView(ticket: ticket)
                     }
                 }
+                .padding(.top, 65)
+                
                 VStack {
                     Spacer()
                     HStack {
                         Button(action: {
+                            //action
                         }) {
                             HStack(spacing: 5) {
                                 HStack {
@@ -51,36 +55,60 @@ struct FlightListView: View {
                     .padding(.bottom, 20)
                     .background(.clear)
                 }
-                .background(.clear)
-            }
-            .onAppear {
-                viewModel.loadTickets()
-            }
-        }
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(.back)
-                        .renderingMode(.template)
-                        .foregroundColor(.blue)
-                }
-            }
-            ToolbarItem(placement: .topBarLeading) {
-                VStack(spacing: 4) {
-                    Text("\(flightInfo.departure)-\(flightInfo.arrival)")
-                        .font(.custom("SFProDisplay-Semibold", size: 16))
-                        .foregroundColor(.white)
+                
+                VStack {
+                    HStack {
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .renderingMode(.template)
+                                .foregroundColor(.blue)
+                        }
+                        .padding(.trailing, 5)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("\(flightInfo.departure)-\(flightInfo.arrival)")
+                                .font(.custom("SFProDisplay-Semibold", size: 16))
+                                .foregroundColor(.white)
+                            Text("\(formatDate(flightInfo.departureDate)), 1 пассажир")
+                                .font(.custom("SFProDisplay-Semibold", size: 14))
+                                .foregroundColor(Color.gray6)
+                        }
+                        Spacer()
+                    }
+                    .padding(.vertical, 8)
+                    .background(Color.gray0)
                     
-                    Text("\(formatDate(flightInfo.departureDate)), 1 пассажир")
-                        .font(.custom("SFProDisplay-Semibold", size: 14))
-                        .foregroundColor(Color.gray6)
-                        .padding(.leading, 6)
+                    Spacer()
                 }
+                .padding(.horizontal, 16)
             }
         }
+
+        .navigationBarBackButtonHidden(true)
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarLeading) {
+//                Button(action: {
+//                    presentationMode.wrappedValue.dismiss()
+//                }) {
+//                    Image(.back)
+//                        .renderingMode(.template)
+//                        .foregroundColor(.blue)
+//                }
+//            }
+//            ToolbarItem(placement: .topBarLeading) {
+//                VStack(spacing: 4) {
+//                    Text("\(flightInfo.departure)-\(flightInfo.arrival)")
+//                        .font(.custom("SFProDisplay-Semibold", size: 16))
+//                        .foregroundColor(.white)
+//                    
+//                    Text("\(formatDate(flightInfo.departureDate)), 1 пассажир")
+//                        .font(.custom("SFProDisplay-Semibold", size: 14))
+//                        .foregroundColor(Color.gray6)
+//                        .padding(.leading, 6)
+//                }
+//            }
+//        }
         .padding(.top, 10)
     }
     
