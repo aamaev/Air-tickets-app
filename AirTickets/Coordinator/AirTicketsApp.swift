@@ -12,6 +12,7 @@ struct AirTicketsApp: App {
     var body: some Scene {
         WindowGroup {
             MainCoordinator().start()
+                .preferredColorScheme(.dark)
         }
     }
 }

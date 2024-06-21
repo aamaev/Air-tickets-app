@@ -10,8 +10,8 @@ import SwiftUI
 
 struct FlightListView: View {
     let flightInfo: FlightInfo
-    @ObservedObject var viewModel = FlightListViewModel()
     
+    @ObservedObject var viewModel = FlightListViewModel()
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -84,31 +84,7 @@ struct FlightListView: View {
                 .padding(.horizontal, 16)
             }
         }
-
         .navigationBarBackButtonHidden(true)
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading) {
-//                Button(action: {
-//                    presentationMode.wrappedValue.dismiss()
-//                }) {
-//                    Image(.back)
-//                        .renderingMode(.template)
-//                        .foregroundColor(.blue)
-//                }
-//            }
-//            ToolbarItem(placement: .topBarLeading) {
-//                VStack(spacing: 4) {
-//                    Text("\(flightInfo.departure)-\(flightInfo.arrival)")
-//                        .font(.custom("SFProDisplay-Semibold", size: 16))
-//                        .foregroundColor(.white)
-//                    
-//                    Text("\(formatDate(flightInfo.departureDate)), 1 пассажир")
-//                        .font(.custom("SFProDisplay-Semibold", size: 14))
-//                        .foregroundColor(Color.gray6)
-//                        .padding(.leading, 6)
-//                }
-//            }
-//        }
         .padding(.top, 10)
     }
     

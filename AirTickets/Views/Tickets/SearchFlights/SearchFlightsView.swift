@@ -4,6 +4,7 @@
 //
 //  Created by Артём Амаев on 18.06.24.
 //
+
 import SwiftUI
 
 struct SearchFlightsView: View {
@@ -15,7 +16,9 @@ struct SearchFlightsView: View {
     @State private var departureDate: Date = Date.now
     @State private var arrivalDate: Date? = nil
     @State private var showPicker = true
-        
+    
+    @StateObject private var keyboardResponder = KeyboardResponder()
+
     var body: some View {
         NavigationView {
             VStack {
@@ -30,6 +33,7 @@ struct SearchFlightsView: View {
                 SearchModalView(departure: $departure, arrival: $arrival)
             }
             .navigationBarHidden(true)
+            .animation(.easeOut(duration: 0.16), value: keyboardResponder.currentHeight)
         }
     }
     
@@ -41,15 +45,16 @@ struct SearchFlightsView: View {
                 .lineLimit(2)
                 .padding(.top, 26)
                 .padding(.bottom, 38)
-
+                .fixedSize(horizontal: false, vertical: true)
+            
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(Color.gray1)
                     .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
                     .frame(height: 122)
-
+                
                 HStack(spacing: 16) {
-                    Image(.search)
+                    Image(systemName: "magnifyingglass")
                         .padding(.leading, 16)
                     
                     VStack {
@@ -59,7 +64,7 @@ struct SearchFlightsView: View {
                                 UserDefaults.standard.set(newValue, forKey: "departure")
                             }
                             .frame(height: 21)
-                           
+                        
                         Divider()
                             .background(.white)
                             .padding(.trailing, 15)
@@ -115,7 +120,7 @@ struct SearchFlightsView: View {
     var completedSearchFields: some View {
         VStack {
             HStack {
-                Image(.back)
+                Image(systemName: "chevron.left")
                     .padding(.leading, 16)
                 
                 VStack {
@@ -206,3 +211,4 @@ struct SearchFlightsView: View {
 #Preview {
     SearchFlightsView()
 }
+
